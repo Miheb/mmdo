@@ -21,7 +21,7 @@ export class HomePage {
    result : result[] ;
 
   constructor(public navCtrl: NavController) {
-   this.result=fake ;
+   this.result=fake  ;
   }
 
 }
