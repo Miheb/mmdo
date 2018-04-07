@@ -1,33 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      my app
     </ion-title>
   </ion-navbar>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
 </ion-header>
 
+
+
 <ion-content padding>
- 
-<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-<ion-list>
-  <ion-item *ngFor="let item of items">
-    {{ item }}
-  </ion-item>
-</ion-list>    
-    
-     <ion-list>
-     
-  <ion-item  *ngFor = "let current of result"> 
-    
-    <ion-thumbnail item-start>
-      <img src="http://via.placeholder.com/200x200.png">
+  <ion-list>
+    <ion-item *ngIf="result.length < 1">Aucun résultat</ion-item>
+    <ion-item *ngFor="let current of result">
+      <ion-thumbnail item-start>
+        <img src="http://via.placeholder.com/200x200.png">
+      </ion-thumbnail>
+      <p>{{current.title}}</p>
+      <button ion-button clear item-end (click)="gotodetails(current);">View</button>
+    </ion-item>
+  </ion-list>
 
-    </ion-thumbnail>
-    <p>{{current.title}}</p>
-    <button ion-button clear item-end>View</button>
-  </ion-item>
-</ion-list>
-
-    </ion-content>
-
+</ion-content>
