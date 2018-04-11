@@ -1,25 +1,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      my app
+
+      Movie Searcher
     </ion-title>
   </ion-navbar>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-
+  <ion-searchbar (ionInput)="getFilms($event)"></ion-searchbar>
 </ion-header>
 
-
-
-<ion-content padding>
+<ion-content padding class = "background">
   <ion-list>
-    <ion-item *ngIf="result.length < 1">Aucun résultat</ion-item>
-    <ion-item *ngFor="let current of result">
-      <ion-thumbnail item-start>
-        <img src="http://via.placeholder.com/200x200.png">
+    <ion-item *ngIf="!(films | async)?.length">Aucun résultat</ion-item>
+    <button ion-item *ngFor="let item of films | async" [navPush]="pushPage" [navParams]="item">
+      <ion-thumbnail item-start >
+        <img [src]="'https://image.tmdb.org/t/p/w92/'+item.poster_path">
       </ion-thumbnail>
-      <p>{{current.title}}</p>
-      <button ion-button clear item-end (click)="gotodetails(current);">View</button>
-    </ion-item>
-  </ion-list>
+      <h2>{{item.title}}</h2>
+      <h3>{{item.release_date | date: 'longDate'}}</h3>
 
+    </button>
+  </ion-list>
 </ion-content>
